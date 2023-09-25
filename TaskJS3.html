@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task JS 3</title>
+</head>
+<body>
+    <form style="margin-top: 5%; margin-left: 30%;">
+
+        <label for="1st">1st Number:</label>
+        <input type="number" name="1st" id="1st">
+        <br> <br>
+        <label for="2nd">2nd Number:</label>
+        <input type="number" name="2nd" id="2nd">
+        <br> <br>
+        <button onclick="mul(event)">Multiply</button>
+        <button onclick="div(event)">Divide</button>
+
+        <br><br>
+        <div id="output"></div>
+    </form>
+
+    
+    <script>
+        function mul(event) {
+            event.preventDefault();
+
+            var a = document.getElementById('1st').value;
+            var b = document.getElementById('2nd').value;
+
+            document.getElementById('output').innerHTML = 'The result is : ' + String(a*b);
+        }
+        
+        function div(event) {
+            event.preventDefault();
+            
+            var a = document.getElementById('1st').value;
+            var b = document.getElementById('2nd').value;
+
+            document.getElementById('output').innerHTML = 'The result is : ' + String(a/b);
+        }
+    </script>
+</body>
+</html>

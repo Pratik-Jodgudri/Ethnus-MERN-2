@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task JS 4</title>
+</head>
+
+<body>
+    <form style="margin-top: 5%; margin-left: 30%;">
+
+        <button onclick="date(event)">Show Date</button>
+        <br>
+        <div id="dateop"></div>
+
+        <br><br>
+        <button onclick="time(event)">Show Time</button>
+        <br>
+        <div id="timeop"></div>
+
+    </form>
+
+
+    <script>
+        function date(event) {
+            event.preventDefault();
+
+            var obj = new Date();
+
+            var monthNames = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+
+
+            document.getElementById('dateop').innerHTML = obj.getDate() + '/' + monthNames[obj.getMonth()] + '/' + obj.getFullYear();
+        }
+
+        function time(event) {
+            event.preventDefault();
+
+            var obj = new Date();
+
+            document.getElementById('timeop').innerHTML = obj.toString();
+        }
+    </script>
+</body>
+
+</html>
