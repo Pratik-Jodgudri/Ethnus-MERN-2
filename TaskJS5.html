@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task JS 5</title>
+    <style>
+        table {
+            margin-left: 30%;
+            margin-top: 50px;
+        }
+
+        table,
+        th,
+        td {
+            padding: 10px;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <form onsubmit="return validate()" autocomplete="off">
+        <table>
+            <tr>
+                <th><label for="name">Name:</label></th>
+                <td><input type="text" name="name" id="name1"></td>
+                <td class="error" id="name-error"></td>
+            </tr>
+            <tr>
+                <th><label for="email">Email:</label></th>
+                <td><input type="email" name="email" id="email1"></td>
+                <td class="error" id="email-error"></td>
+            </tr>
+            <tr>
+                <th><label for="website">Website:</label></th>
+                <td><input type="url" name="website" id="website1"></td>
+                <td class="error" id="website-error"></td>
+            </tr>
+            <tr>
+                <th><label for="message">Message:</label></th>
+                <td><textarea name="message" id="message1" cols="20" rows="3"></textarea></td>
+                <td class="error" id="message-error"></td>
+            </tr>
+            <tr>
+                <th colspan="2"><input type="submit" value="Submit"></th>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        function validate() {
+            event.preventDefault();
+
+            const name = document.getElementById('name1');
+            const email = document.getElementById('email1');
+            const website = document.getElementById('website1');
+            const message = document.getElementById('message1');
+
+            if (name.value.length == 0) {
+                name.style.border = '2px solid red';
+                document.getElementById('name-error').innerHTML = 'This field is required';
+            } else {
+                name.style.border = '';
+                document.getElementById('name-error').innerText = '';
+            }
+
+            if (!validateemail(email)) {
+                email.style.border = '2px solid red';
+                document.getElementById('email-error').innerText = 'A valid email address is required';
+            } else {
+                email.style.border = '';
+                document.getElementById('email-error').innerText = '';
+            }
+
+            if (!isValidUrl(website.value)) {
+                website.style.border = '2px solid red';
+                document.getElementById('website-error').innerText = 'A valid url is required';
+            } else {
+                website.style.border = '';
+                document.getElementById('website-error').innerText = '';
+            }
+
+            if (message.value.length == 0) {
+                message.style.border = '2px solid red';
+                document.getElementById('message-error').innerText = 'This field is required';
+            } else {
+                message.style.border = '';
+                document.getElementById('message-error').innerText = '';
+            }
+        }
+
+        function isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (err) {
+                return false;
+            }
+        }
+
+        function validateemail(email) {
+            var x = email.value;
+            var atposition = x.indexOf("@");
+            var dotposition = x.lastIndexOf(".");
+            if (atposition < 1 || dotposition < atposition + 2 || dotposition + 2 >= x.length) {
+                return false;
+            }
+            return true;
+        } 
+    </script>
+</body>
+
+</html>
