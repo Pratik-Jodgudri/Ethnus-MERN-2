@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task JS 7</title>
+
+    <style>
+        h2 {
+            color: rgb(54, 54, 249);
+            text-align: center;
+        }
+
+        .buttons {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+
+        button {
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="https://www.javatpoint.com/oprweb/train1.png" alt="train" id="train">
+    </div>
+    <h2>Click the following buttons to handle animation</h2>
+    <div class="buttons">
+        <button type="button" value="Start" onclick="moveRight()">Start</button>
+        <button type="button" value="Stop" onclick="stopit()">Stop</button>
+    </div>
+
+    <script>
+        var imgObj = null;
+        var animate;
+        function init() {
+            imgObj = document.getElementById('train');
+            imgObj.style.position = 'relative';
+            imgObj.style.left = '0px';
+        }
+        function moveRight() {
+            imgObj.style.left = parseInt(imgObj.style.left) + 2 + 'px';
+            animate = setTimeout(moveRight, 12);
+        }
+        function stopit() {
+            clearTimeout(animate);
+            imgObj.style.left = '0px';
+        }
+        window.onload = init;  
+    </script>
+</body>
+
+</html>
