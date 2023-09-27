@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+
+    <style>
+        body {
+            background: linear-gradient(#ecec47, #d885ef);
+            height: 600px;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 0px solid black;
+        }
+
+        td,
+        th {
+            padding: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="password"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .error-message {
+            color: rgb(213, 0, 0);
+        }
+
+        #registerbutton {
+            width: 8%;
+            border: 2px solid black;
+            border-radius: 100px;
+            background-color: red;
+            color: white;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+    <form onsubmit="return validateForm(event)">
+        <div style="text-align: center;">
+            <h1 style="color: blue;">Registration Form</h1>
+        </div>
+        <table border="0" align="center">
+            <tr>
+                <th><label for="fname">First Name</label></th>
+                <td><input type="text" name="fname" id="fname" /></td>
+                <td><span id="fname-error" class="error-message"></span></td>
+            </tr>
+            <tr>
+                <th><label for="lname">Last Name</label></th>
+                <td><input type="text" name="lname" id="lname" /></td>
+                <td><span id="lname-error" class="error-message"></span></td>
+            </tr>
+            <tr>
+                <th><label for="email">Email</label></th>
+                <td><input type="email" name="email" id="email" /></td>
+                <td><span id="email-error" class="error-message"></span></td>
+            </tr>
+            <tr>
+                <th><label for="password">Password</label></th>
+                <td><input type="password" name="password" id="password" /></td>
+                <td><span id="password-error" class="error-message"></span></td>
+            </tr>
+            <tr>
+                <th><label for="repassword">Re-enter Password</label></th>
+                <td><input type="password" name="repassword" id="repassword" /></td>
+                <td><span id="repassword-error" class="error-message"></span></td>
+            </tr>
+            <tr>
+                <th rowspan="2"><label for="gender">Gender</label></th>
+                <td>
+                    <input type="radio" name="gender" id="male" />
+                    <label for="male">Male</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" name="gender" id="female" />
+                    <label for="female">Female</label>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="age">Age</label></th>
+                <td><input type="number" name="age" id="age" /></td>
+                <td><span id="age-error" class="error-message"></span></td>
+            </tr>
+            <tr>
+                <th><label for="address">Address</label></th>
+                <td>
+                    <textarea id="address" name="address" rows="4" cols="50"></textarea>
+                </td>
+                <td><span id="address-error" class="error-message"></span></td>
+            </tr>
+            <tr>
+                <th><label for="state">State</label></th>
+                <td><input type="text" id="state"></td>
+                <td><span id="state-error" class="error-message"></span></td>
+            </tr>
+            <tr>
+                <th><label for="country">Country</label></th>
+                <td>
+                    <select name="country" id="country">
+                        <option value="" disabled selected>Choose Your Country</option>
+                        <option value="India">India</option>
+                        <option value="US">U.S.</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Australia">Australia</option>
+                        <option value="UK">U.K.</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="lang">Languages known</label></th>
+                <td>
+                    <input type="checkbox" name="lang" id="English">
+                    <label for="English">English</label>
+                    <input type="checkbox" name="lang" id="Hindi">
+                    <label for="Hindi">Hindi</label>
+                    <input type="checkbox" name="lang" id="Marathi">
+                    <label for="Marathi">Marathi</label>
+                    <input type="checkbox" name="lang" id="Kannada">
+                    <label for="Kannada">Kannada</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="checkbox" name="checkbox" id="checkbox">
+                    <label for="checkbox">Hereby I declare all the given details are true</label>
+                </td>
+                <td>
+                    <div class="error-message" id="checkbox-error"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: end;">
+                    Log in to <a href="https://www.ethnus.com">Ethnus</a> website.
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div style="text-align: center;">
+            <button type="submit" id="registerbutton">Register</button>
+        </div>
+    </form>
+
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            const checkbox = document.getElementById('checkbox');
+
+            if (!checkbox.checked) {
+                document.getElementById('checkbox-error').innerText = 'Please accept the declaration.';
+                return false;
+            } else {
+                document.getElementById('checkbox-error').innerText = '';
+                document.getElementById('registerbutton').disabled = false; // Enable the button
+                return validate(); // Allow form submission
+            }
+        }
+        function validate() {
+            // event.preventDefault();
+
+            const fname = document.getElementById('fname').value;
+            const lname = document.getElementById('lname').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const repassword = document.getElementById('repassword').value;
+            const age = document.getElementById('age').value;
+            const address = document.getElementById('address').value;
+            const state = document.getElementById('state').value;
+
+            if (fname.length == 0) {
+                document.getElementById('fname-error').innerText = 'POOR';
+            }
+
+            if (lname.length == 0) {
+                document.getElementById('lname-error').innerText = 'POOR';
+            }
+
+            if (email.length == 0) {
+                document.getElementById('email-error').innerText = 'POOR';
+            }
+
+            if (password.length == 0) {
+                document.getElementById('password-error').innerText = 'POOR';
+            }
+
+            if (repassword.length == 0) {
+                document.getElementById('repassword-error').innerText = 'POOR OR MISMATCH';
+            }
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('email-error').innerText = 'POOR';
+            }
+
+            if (password !== repassword) {
+                document.getElementById('repassword-error').innerText = 'MISMATCH';
+            }
+            if (age.length == 0) {
+                document.getElementById('age-error').innerText = 'POOR';
+            }
+
+            if (address.length == 0) {
+                document.getElementById('address-error').innerText = 'POOR';
+            }
+            if (state.length == 0) {
+                document.getElementById('state-error').innerText = 'POOR';
+            }
+
+            const checkbox = document.getElementById('checkbox');
+
+            if (!checkbox.checked) {
+                document.getElementById('checkbox-error').innerText = 'Please accept the declaration.';
+                return false;
+            } else {
+                document.getElementById('checkbox-error').innerText = '';
+                document.getElementById('registerbutton').disabled = false; // Enable the button
+                return true; // Allow form submission
+            }
+
+        }
+    </script>
+</body>
+
+</html>
